@@ -8,6 +8,38 @@ SPDX-License-Identifier: Apache-2.0
 Use Claude Code 2.1.271 or later for `omitClaudeMd` support. Older versions
 must not be treated as verified Goldfish isolation environments.
 
+## Question delivery: every question is a form
+
+> Fork change (2026-11-02, Paulo Sousa): this section is not in the upstream
+> plugin. It overrides every instruction in an EGM skill to ask the user in
+> plain chat or by a regular text message.
+
+In Claude Code, ask the user every question through the `AskUserQuestion`
+tool, never as a plain chat message. This covers the readiness, approval,
+checkpoint and handoff gates, and also the questions the skills otherwise ask
+in chat: open-ended discovery in `egm-brainstorm`, missing inputs and file
+paths in `egm-review`, `egm-review-loop` and `egm-drift-report`, intake and
+alternatives questions in `egm-draft`, and per-finding decisions in
+`egm-resolve`.
+
+- A gate keeps its own rules: one question, single-select, the skill's options
+  in the skill's order, and no `(Recommended)` label.
+- An open-ended question becomes a form question with 2 to 4 options that
+  cover clearly different answers. Do not mark any option as recommended and
+  do not order the options to favour one. The form's built-in "Other" answer
+  is where the user writes anything the options miss, so never add an "Other"
+  option yourself. Ask about one topic per question; one form may hold up to 4
+  related questions.
+- A file path question lists the candidate files you found as options (for
+  example `design_draft.md`, or the newest files under `docs/designs/`); the
+  user types any other path in "Other".
+- A per-finding decision in `egm-resolve` uses the reply choices the skill
+  names for that finding as the options.
+- Write the explanation and any file link in chat before the form, as the
+  skills require, and never send a form with empty response text.
+- If `AskUserQuestion` is not available in the session (for example an
+  unattended or `-p` run), follow the skill's plain-chat instructions.
+
 ## Invocation and resources
 
 ```sh

@@ -14,6 +14,9 @@ description: >-
 When running in Codex or ChatGPT Work, first read [Codex integration](../../docs/codex.md).
 In Claude Code or Cowork, read `${CLAUDE_PLUGIN_ROOT}/docs/claude.md` first.
 
+> Fork change (2026-11-02, Paulo Sousa): intake questions, file paths
+> included, follow the question-delivery section of `docs/claude.md`.
+
 Reviews and validates a design document through specialized reviewer personas.
 
 ## Delegation
@@ -85,10 +88,12 @@ If your harness has no subagent tool, stop and tell the user: a review in the sa
 1.  Verify if `TargetFile` is provided. If missing:
     *   Explain to the user that the target design document path is required to
         analyze its structure and discover the semantic split.
-    *   Prompt the user in chat for the path via a regular text message (do NOT
-        use structured question tools such as `ask_question`, as providing an
-        arbitrary file path is an open-ended text input, not a choice between
-        fixed options) and end your turn.
+    *   Ask the user for the path as `docs/claude.md` (or your harness's
+        integration doc) says, and end your turn. In Claude Code that is an
+        `AskUserQuestion` form listing the candidate design documents you found
+        (for example `design_draft.md` or the newest files under
+        `docs/designs/`), with any other path typed in "Other". Without such a
+        tool, ask in a regular text message.
 2.  Once `TargetFile` is provided, verify if `GoldfishContext` is provided (or
     if the user explicitly stated in their prompt to proceed with no additional
     context). If missing:
@@ -96,9 +101,11 @@ If your harness has no subagent tool, stop and tell the user: a review in the sa
         optional, but can establish baseline knowledge for reviewers.
     *   Clarify that reviewers **always automatically read** files explicitly
         mentioned or linked in the target design document itself.
-    *   Prompt the user in chat via regular text if they wish to provide
-        additional context files. Do NOT use structured question tools for
-        open-ended file paths.
+    *   Ask the user whether they wish to provide additional context files, as
+        `docs/claude.md` (or your harness's integration doc) says. In Claude
+        Code that is an `AskUserQuestion` form whose options are "No additional
+        context" and up to three candidate files or folders you found, with any
+        other paths typed in "Other". Without such a tool, ask in regular text.
 
 ### Step 2: Curated Pipeline Preset Selection
 

@@ -15,6 +15,10 @@ description: >-
 When running in Codex or ChatGPT Work, first read [Codex integration](../../docs/codex.md).
 In Claude Code or Cowork, read `${CLAUDE_PLUGIN_ROOT}/docs/claude.md` first.
 
+> Fork change (2026-11-02, Paulo Sousa): discovery questions follow the
+> question-delivery section of `docs/claude.md`. In Claude Code they are forms
+> with neutral, unranked options instead of plain chat.
+
 ## Overview
 
 This skill acts as the upstream conversational brainstorming engine for the
@@ -44,13 +48,16 @@ If your harness has no subagent tool, stop and tell the user: a review in the sa
     directory, if it has one) using your file-writing tool and notify the user
     in the chat with a clean link to the file.
 2.  **Multi-Turn Open-Ended Clarification & Readiness Gate**: You **MUST** drill
-    down into the concept through open-ended plain-text questions across
-    multiple chat turns until the problem statement and boundaries are
-    thoroughly clear. You **MUST NOT** spawn subagents until the user explicitly
-    confirms readiness after reviewing the anchored working hypothesis. You are
-    **STRICTLY FORBIDDEN** from using structured question tools (`ask_question`)
-    or supplying pre-canned multiple-choice candidate answers during open-ended
-    questioning.
+    down into the concept through open-ended questions across multiple turns
+    until the problem statement and boundaries are thoroughly clear. Deliver
+    each question as the harness integration doc says (in Claude Code: an
+    `AskUserQuestion` form, per `docs/claude.md`). During open-ended
+    questioning you are **STRICTLY FORBIDDEN** from marking an option as
+    recommended, ordering options to favour one, or offering options that
+    steer the user toward a conclusion you already hold; the free-text "Other"
+    answer must stay available. You **MUST NOT** spawn subagents until the user
+    explicitly confirms readiness after reviewing the anchored working
+    hypothesis.
 3.  **Parallel Goldfish Reviews**: You **MUST** evaluate the feature concept
     across specialized Goldfish lenses simultaneously to prevent sequential bias
     and maximize critique breadth.
@@ -109,9 +116,10 @@ If your harness has no subagent tool, stop and tell the user: a review in the sa
     launching subagents after a single response. Continue asking targeted,
     open-ended clarifying questions across multiple chat turns as needed until
     the problem statement, constraints, and target behavior are thoroughly
-    defined. Do NOT use structured question tools (`ask_question`) and do NOT
-    provide candidate multiple-choice options during problem exploration. Ask
-    open-ended questions directly in chat:
+    defined. Ask the questions as `docs/claude.md` (or your harness's
+    integration doc) says; in Claude Code that is an `AskUserQuestion` form
+    whose options are neutral, unranked and clearly different from each other.
+    Questions to cover:
 
     *   *What specific problem, bottleneck, or pain point does this solve?*
     *   *Who or what system will consume this feature, and under what

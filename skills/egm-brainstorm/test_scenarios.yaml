@@ -17,7 +17,10 @@ description: "Behavioral evaluation scenario suite for egm-brainstorm skill."
 
 scenarios:
   - scenario_id: "open_ended_discovery_divergence"
-    description: "Verifies open-ended conversational clarification without multiple-choice menus during initial discovery."
+    # Fork change (2026-11-02, Paulo Sousa): in Claude Code discovery questions
+    # arrive as AskUserQuestion forms; the eval still forbids ranked or
+    # recommended menus in the visible text.
+    description: "Verifies open-ended clarification without recommended or ranked option menus during initial discovery."
     eval_type: "deterministic"
     system_prompt:
       skill_file: "skills/egm-brainstorm/SKILL.md"
@@ -29,7 +32,7 @@ scenarios:
             message: "Brainstorming must initiate open inquiry directly in chat."
           - type: "forbidden_pattern"
             pattern: "(\\(Recommended\\)|Option 1|Option A|\\[1\\])"
-            message: "Brainstorming must not present multiple-choice menus during initial discovery."
+            message: "Brainstorming must not present recommended or ranked option menus during initial discovery."
 
   - scenario_id: "readiness_gate_modal"
     description: "Asserts single-select modal presentation for readiness confirmation before launching Goldfishes."

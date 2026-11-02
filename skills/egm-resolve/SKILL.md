@@ -14,6 +14,9 @@ description: >-
 When running in Codex or ChatGPT Work, first read [Codex integration](../../docs/codex.md).
 In Claude Code or Cowork, read `${CLAUDE_PLUGIN_ROOT}/docs/claude.md` first.
 
+> Fork change (2026-11-02, Paulo Sousa): per-finding decisions follow the
+> question-delivery section of `docs/claude.md`.
+
 ## Overview
 
 This skill instructs the agent on how to operate within the primary Elephant
@@ -129,9 +132,14 @@ proceed:
 -   **Custom instruction / Wildcard request**: Reply with any custom
     instruction, question, or out-of-band request."*
 
-You **MUST** immediately yield active execution by calling **zero tools** in
-this turn payload. You must stop execution and go idle, waiting for the human
-developer to comment on/edit the artifact or reply in the chat.
+In Claude Code, after that message, present one single-select
+`AskUserQuestion` form as the only tool call of the turn, with the options
+**Auto accept**, **Continue to next phase**, **Interactive breakdown** and
+**I will comment on the file**; a custom instruction goes in "Other" (see
+`docs/claude.md`). Elsewhere, you **MUST** immediately yield active execution
+by calling **zero tools** in this turn payload. Either way, stop execution and
+go idle, waiting for the human developer to answer, comment on/edit the
+artifact or reply in the chat.
 
 Interpret the user's action/response as follows:
 
@@ -157,8 +165,11 @@ Interpret the user's action/response as follows:
         * **Proposed Edit:** [Precise replacement text or deletion note]
         ```
 
-        Then prompt the user in chat for their decision on this item (calling
-        **zero tools** and going idle):
+        Then ask the user for their decision on this item and go idle. Ask it
+        as `docs/claude.md` (or your harness's integration doc) says: in Claude
+        Code, one single-select `AskUserQuestion` form, the only tool call of
+        the turn, whose options are the three replies below; elsewhere, in
+        chat with zero tool calls:
 
         *   If `PROPOSE FIX`: Ask the user to reply with **Accept proposed
             fix**, **Skip / ignore**, or **Discuss**.

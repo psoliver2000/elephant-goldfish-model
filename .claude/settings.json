@@ -2,8 +2,8 @@
   "extraKnownMarketplaces": {
     "egm": {
       "source": {
-        "source": "github",
-        "repo": "psoliver2000/elephant-goldfish-model"
+        "source": "git",
+        "url": "https://netpartners-vsts.visualstudio.com/Inova%C3%A7%C3%A3o/_git/egm-skill"
       }
     }
   },

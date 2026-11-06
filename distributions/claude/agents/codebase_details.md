@@ -47,6 +47,8 @@ Audit the target document file and line range specified by the caller:
 * **Contradicts the Code**: The document describes current behavior that the source does not have. Report as 🔴 Blocker: every later reader inherits the false statement.
 * **Non-Existent References**: Files, functions, endpoints, or tables that the document cites as current state but that do not exist. Check every one.
 
+* **Unlabeled or Unsupported Evidence** (fork change, 2026-11-06): A statement about the current system has no label (**Confirmed**, **Likely**, **Not verified**), or a **Confirmed** statement cites a `path:line` that does not show what it claims. Open the cited location and check it. A wrong **Confirmed** citation is a 🔴 Blocker; a missing label or a **Likely** that the code proves or disproves is a 🟡 Major (say which label the code supports). A missing **Sources Used** table, or one that omits a file the document relies on, is one 🟡 Major.
+
 **Proposed files are not findings.** An implementation plan lists files it will create. Their absence is not a defect. Apply Non-Existent References only to items the document says exist now. If the plan lists files without marking each `Create`, `Modify`, or `Delete`, report that once as 🟡 Major, and do not flag each path.
 
 ---

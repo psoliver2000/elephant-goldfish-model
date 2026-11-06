@@ -69,6 +69,18 @@ the aligned problem and requirements from the brainstorm phase.
     restate the trade-offs and present the same gate again. Decide mechanical
     choices with one defensible answer (e.g., file naming, formatting)
     yourself.
+14. **Evidence Labels (Fork change, 2026-11-06)**: Every statement in the
+    draft about the current system (an existing file, function, endpoint,
+    table, column, configuration value, or behavior) carries one label:
+    **Confirmed** (you read it in the code or reproduced it; cite
+    `path:line`), **Likely** (strong indication without proof; say what
+    the indication is), or **Not verified** (you could not check; say
+    why). Name the environment when it matters (code only, dev, staging,
+    production). "Not found" is a valid answer; inventing a name, format,
+    or value is not: copy it from a source you read or ask the user. Do
+    not claim to have read a file you did not read. Proposed items that
+    do not exist yet are marked **(proposed)** instead of a label. Fill
+    the **Sources Used** table with every file the draft relies on.
 
 ## Inputs
 

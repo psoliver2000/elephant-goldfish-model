@@ -23,6 +23,16 @@ The specification must explicitly call out its own constraints. It must identify
 potential failure modes, security implications, scalability limits, and how they
 will be mitigated.
 
+## The Evidence Rule
+
+Fork change (2026-11-06). Every statement about the current system (an
+existing file, function, endpoint, table, configuration value, or behavior)
+carries one label: **Confirmed** with a `path:line` citation, **Likely** with
+the indication stated, or **Not verified** with the reason stated. Items that
+do not exist yet are marked **(proposed)**. The specification fails this
+standard if it states current-system facts without a label, cites a source
+that does not support the statement, or omits the **Sources Used** table.
+
 ## Requirements (Non-Exhaustive Examples)
 
 The specification must detail these areas if applicable to the changes:

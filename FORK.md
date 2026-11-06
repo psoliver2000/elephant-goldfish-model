@@ -32,6 +32,25 @@ skills seguem as instruções originais em texto.
 A proteção original do EGM continua: na descoberta, nada de opções que puxem
 a resposta para o que o agente já pensa.
 
+## Rótulos de evidência no design
+
+Vêm do método LLM CODE da Netpartners (GUIA §3 e §5). Toda afirmação do
+design sobre o sistema atual leva um rótulo: **Confirmed** (com `arquivo:linha`),
+**Likely** (com o indício) ou **Not verified** (com o motivo). O que ainda não
+existe leva **(proposed)**. O design ganha a tabela **Sources Used**.
+
+Arquivos alterados em 2026-11-06 (Paulo Sousa):
+
+- `skills/egm-draft/SKILL.md`: restrição 14, "Evidence Labels".
+- `skills/egm-draft/references/design_doc.md`: legenda dos rótulos e a seção
+  "Sources Used".
+- `resources/document_standards/feature-spec-standard.md`: "The Evidence
+  Rule"; a spec reprova sem rótulos ou sem a tabela de fontes.
+- `agents/codebase_details.md`: vetor "Unlabeled or Unsupported Evidence".
+  O revisor abre cada `arquivo:linha` citado; citação errada em **Confirmed**
+  é blocker.
+- `distributions/claude/`: as cópias desses arquivos.
+
 ## Instalar no Claude Code
 
 ```sh

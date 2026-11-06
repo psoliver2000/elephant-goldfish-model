@@ -6,6 +6,18 @@
 
 --------------------------------------------------------------------------------
 
+<!--
+Evidence labels (fork change, 2026-11-06). Every statement about the current
+system carries one label:
+
+- **Confirmed** (`path/to/file.py:42`): read in the code or reproduced.
+- **Likely**: strong indication without proof; state the indication.
+- **Not verified**: could not be checked; state why.
+
+Items that do not exist yet are marked **(proposed)**. "Not found" is a valid
+answer; an invented name, format, or value is not.
+-->
+
 ## Overview
 
 <!-- Provide a high-level summary of the feature, the business or technical
@@ -117,6 +129,15 @@ this design:
 this section can be omitted or stated as "None".]
 
 --------------------------------------------------------------------------------
+
+### Sources Used
+
+<!-- Every file, schema, log, or document this design relies on, and what it
+supports. A statement labeled Confirmed must trace back to a row here. -->
+
+| Source | What it supports | Environment |
+| --- | --- | --- |
+| `[path/to/file]` | [Which statements or sections rely on it] | [code only / dev / staging / production] |
 
 ### Additional Resources
 

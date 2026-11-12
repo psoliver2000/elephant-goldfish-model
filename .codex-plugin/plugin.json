@@ -1,12 +1,12 @@
 {
   "name": "egm",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Draft specs, review designs, and check implementation drift.",
   "author": {
-    "name": "Google"
+    "name": "Netpartners (fork de google/elephant-goldfish-model)"
   },
   "homepage": "https://egm.dev",
-  "repository": "https://github.com/google/elephant-goldfish-model",
+  "repository": "https://netpartners-vsts.visualstudio.com/Inova%C3%A7%C3%A3o/_git/egm-skill",
   "license": "Apache-2.0",
   "skills": "./skills/",
   "requires_local_executor": true,
@@ -14,7 +14,7 @@
     "displayName": "Elephant-Goldfish Model",
     "shortDescription": "Draft and stress-test specs",
     "longDescription": "Draft specs, review designs with fresh-context reviewers, resolve findings, and check implementation drift. Uses your host's models and permissions. Reviews require isolated subagents; cloud support remains partial. Not an officially supported Google product.",
-    "developerName": "Google",
+    "developerName": "Netpartners (fork de google/elephant-goldfish-model)",
     "brandColor": "#1B6EF3",
     "category": "Developer Tools",
     "capabilities": ["Draft specifications", "Review designs", "Check implementation drift"],
